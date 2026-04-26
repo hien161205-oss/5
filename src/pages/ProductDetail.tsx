@@ -292,7 +292,7 @@ export default function ProductDetail() {
                       "Thành phần dưỡng chất tự nhiên bảo vệ làn môi căng mọng."
                     ]).map((f, i) => (
                       <li key={i} className="flex items-start space-x-3 text-sm text-gray-600 leading-relaxed">
-                         < CheckCircle2 className="w-5 h-5 text-brand-400 mt-0.5 flex-shrink-0" />
+                         <CheckCircle2 className="w-5 h-5 text-brand-400 mt-0.5 flex-shrink-0" />
                          <span>{f}</span>
                       </li>
                     ))}
@@ -376,4 +376,3 @@ export default function ProductDetail() {
     </div>
   );
 }
-

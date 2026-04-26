@@ -147,8 +147,7 @@ export default function Home() {
         <div className="relative h-[30vh] md:h-[50vh] lg:h-[60vh] rounded-[3rem] overflow-hidden bg-brand-100 shadow-2xl shadow-brand-100/20">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=2070')` }}
-          />
+            style={{ backgroundImage: `url('https://i.pinimg.com/originals/2b/bb/63/2bbb63d112062dc435e224e79e009d88.jpg')` }} />
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
           <div className="relative z-10 h-full flex flex-col justify-center px-12 md:px-20 space-y-4 max-w-2xl">
             <motion.span 
@@ -172,7 +171,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="text-white/80 text-sm md:text-base max-w-md drop-shadow-md"
             >
-              Khám phá trọn bộ sưu tập mỹ phẩm 3CE đình đám. Phong cách cá tính, thời thượng và đẳng cấp.
+            
             </motion.p>
           </div>
         </div>

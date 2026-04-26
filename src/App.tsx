@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
-import { ShoppingCart, User, LogOut, Menu, X, Search, ChevronRight, Facebook, Instagram, Heart } from 'lucide-react';
+import { ShoppingCart, User, LogOut, Menu, X, Search, Facebook, Instagram, Heart } from 'lucide-react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from './lib/firebase';
 import { UserProfile } from './types';
-import { formatPrice, cn } from './lib/utils';
+import { cn } from './lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { CartProvider, useCart } from './context/CartContext';
 
@@ -79,11 +79,6 @@ export default function App() {
     return unsubscribe;
   }, []);
 
-  const handleLogout = async () => {
-    await signOut(auth);
-    toast.success('Đã đăng xuất');
-  };
-
   if (loading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-brand-50">
@@ -155,11 +150,6 @@ function Navbar({ user, cartCount }: { user: UserProfile | null; cartCount: numb
     }
   };
 
-  const handleLogout = async () => {
-    await signOut(auth);
-    toast.success('Đã đăng xuất');
-  };
-
   return (
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-300",
@@ -210,7 +200,7 @@ function Navbar({ user, cartCount }: { user: UserProfile | null; cartCount: numb
                      </span>
                    </div>
                 </Link>
-                <button onClick={handleLogout} className="hover:text-brand-500 transition-colors">
+                <button onClick={() => signOut(auth).then(() => toast.success('Đã đăng xuất'))} className="hover:text-brand-500 transition-colors">
                   <LogOut className="w-6 h-6" />
                 </button>
               </div>
@@ -296,7 +286,7 @@ function Navbar({ user, cartCount }: { user: UserProfile | null; cartCount: numb
               {user && <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>Tài khoản</Link>}
               {user?.role === 'admin' && <Link to="/admin" onClick={() => setMobileMenuOpen(false)}>Admin</Link>}
               {user ? (
-                <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="text-brand-500">Đăng xuất</button>
+                <button onClick={() => { signOut(auth).then(() => toast.success('Đã đăng xuất')); setMobileMenuOpen(false); }} className="text-brand-500">Đăng xuất</button>
               ) : (
                 <Link to="/login" onClick={() => setMobileMenuOpen(false)}>Đăng nhập</Link>
               )}
